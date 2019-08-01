@@ -1,0 +1,26 @@
+.Input{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.Input input, .Input select {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.Input label{
+    width: 70%;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+.Invalid{
+    border: 1px solid red;
+    background-color: #ffe9e9;
+}
+@media(max-width:700px){
+    .Input input, .Input select, .Input label {
+        width: 100%;
+    }
+}

@@ -1,0 +1,31 @@
+.Order{
+    width: 80%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #eee;
+    padding: 10px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.Ingredient{
+    display: inline;
+    /* background-color: #e27b36; */
+    padding: 7px;
+    border-radius: 5px;
+    margin: 0 5px;
+    border: 1px solid #ccc
+}
+.Ingredient span, .CustomerDetails span{
+    color:#8BC34A;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.CustomerDetails{
+    text-decoration: none;
+    list-style-type: none;
+}
+@media(max-width:700px){
+    .Ingredient {
+        display: block;
+    }
+}

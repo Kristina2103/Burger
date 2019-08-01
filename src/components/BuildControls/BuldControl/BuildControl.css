@@ -1,0 +1,24 @@
+.BuildControl{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+   
+}
+
+.AddIngredient, .RemoveIngredient{
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 10px;
+    /* float: right; */
+    color: #8BC34A;
+    display: block;
+    font: inherit;
+    width: 80px;
+}
+.Label{
+    color: #e27b36;
+    font-weight: 400;
+    width: 80px;
+    text-transform: uppercase;
+}
