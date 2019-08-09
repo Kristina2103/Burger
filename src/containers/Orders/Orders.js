@@ -21,12 +21,15 @@ class Orders extends Component{
         let title = 'Fetching orders...'
         if(this.props.orders.length !== 0){
             content = this.props.orders.map((order, index)=>{
-                return <Order key={index} customerDetails={order['customerDetails']} orderDetails={order['OrderDetails']}/>
+                return  <Order
+                clicked={this.props.deleteOrder}
+                id={order['id']}
+                key={index} 
+                customerDetails={order['customerDetails']} 
+                orderDetails={order['OrderDetails']}/>
             })
             title = 'All orders'
-        
         }
-        console.log(this.props.orders)
         return(
             
             <Auxiliary>
@@ -44,7 +47,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return{
-        getAllOrders : () => dispatch(actions.getAllOrders())
+        getAllOrders : () => dispatch(actions.getAllOrders()),
+        deleteOrder : orderId => dispatch(actions.deleteOrder(orderId))
     }
 }
 

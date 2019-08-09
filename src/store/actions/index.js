@@ -7,6 +7,7 @@ export {
    sendOrder,
    purchaseInit,
    getAllOrders,
-   getOrdersSuccess
+   getOrdersSuccess,
+   deleteOrder,
 
  } from './order'

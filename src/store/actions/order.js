@@ -32,6 +32,19 @@ export const getOrdersSuccess = orders => {
         payload: orders
     }
 }
+const deleteOrderSuccess = orderId => {
+    return{
+            type: actionTypes.DELETE_ORDER,
+            orderId: orderId
+        }
+}
+export const deleteOrder = orderId => {
+    return dispatch => {
+        axiosInstance.delete('/orders/'+orderId+'.json', )
+        .then((res) => dispatch(deleteOrderSuccess(orderId)))
+        .catch((err) => console.log(err.message))
+    }
+}
 
 export const getOrdersFailed = () => {
     return{

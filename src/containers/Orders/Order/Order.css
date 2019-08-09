@@ -6,6 +6,7 @@
     margin: 10px auto;
     box-sizing: border-box;
     border-radius: 5px;
+    position: relative
 }
 .Ingredient{
     display: inline;

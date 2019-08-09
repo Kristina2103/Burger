@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from  './Order.css'
+import Button from '../../../components/UI/Button/Button'
 
 const Order = (props) => {
     const customerDetails =Object.keys(props.customerDetails).map(key => {
@@ -9,12 +10,11 @@ const Order = (props) => {
     const ingredients = props.orderDetails.map((order, index)=>{
        return <li className={classes.Ingredient} key={index} ><span>{order.name}</span> : {order.qty} x {order.price}RSD</li>
     })
-  
     const total = props.orderDetails.reduce((sum, order)=>{return sum + order.price*order.qty},0)
-
     return(
         <div className={classes.Order}>
             <h2>Ingredients:</h2>
+            <Button  clicked={() => props.clicked(props.id)} typeButton="Delete" >Delete</Button> 
             <ul>
              {ingredients}
             </ul>
