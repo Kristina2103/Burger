@@ -52,24 +52,19 @@ export const getOrdersFailed = () => {
     }
 }
 
-export const getAllOrders = () => {
+export const getAllOrders = (token, userId) => {
     return dispatch => {
-        axiosInstance.get('/orders.json')
-            .then( res => 
-                dispatch(getOrdersSuccess(res.data)
-                // console.log(res.data)
-                ))
-            .catch( err => console.log(err.message)
-                // dispatch(getOrdersFailed())
-                 )
+        const queryParams = '?auth=' + token +'&orderBy="userId"&equalTo="'+userId + '"'
+        axiosInstance.get('/orders.json' + queryParams)
+            .then( res =>  dispatch(getOrdersSuccess(res.data)))
+            .catch( err =>  dispatch(getOrdersFailed()))
     }
 }
 
-export const sendOrder = (orderDetials) => {
-    
+export const sendOrder = (orderDetials, token) => {
     return dispatch => {
         dispatch(sendOrderWaiting())
-        axiosInstance.post('/orders.json', (orderDetials))
+        axiosInstance.post('/orders.json?auth='+token, (orderDetials))
             .then( res => dispatch(sendOrderSuccess(res.data['name'], orderDetials)))
             .catch((err) => dispatch(sendOrderFailed(err)))
     }

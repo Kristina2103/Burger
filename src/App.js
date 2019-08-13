@@ -1,29 +1,48 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import * as actions from './store/actions/index'
+import { Route, Switch, withRouter} from 'react-router-dom'
+
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Layout from './hoc/Layout/Layout'
 import BurgerBuilder from './containers/BurgerBuilder';
 import Checkout from './containers/Checkout/Checkout'
 import Orders from './containers/Orders/Orders'
+import Auth from './containers/Auth/Auth'
+import Logout from './containers/Auth/Logout/Logout'
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.onTryAutoSignIn()
+  }
+
   render(){
     return (
-      <BrowserRouter>
+      
         <div className="App">
           <Layout>
-            <Switch>
-              <Route path="/orders"exac component={Orders} />
+          <Switch>
+          <Route path="/auth" exac component={Auth} />
               <Route path="/checkout"exac component={Checkout} />
+              <Route path="/orders"exac component={Orders} />
+              <Route path="/logout" exac component={Logout} />
               <Route path="/" exac component={BurgerBuilder} />
             </Switch>
           </Layout>
-          
-          
         </div>
-      </BrowserRouter>
     );
   }
 }
+const mapStateToProps = state => {
+  return{
+    isAuth: state.auth.token !== null
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignIn: () => dispatch(actions.authCheckState())
+  }
+}
 
-export default App;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

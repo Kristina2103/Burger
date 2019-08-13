@@ -11,3 +11,8 @@ export {
    deleteOrder,
 
  } from './order'
+ export {
+   auth,
+   logout,
+   authCheckState
+} from './auth'

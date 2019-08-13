@@ -5,7 +5,8 @@ const InitialState = {
     loading:false,
     purchased: false,
     orders: [],
-    error:false
+    error:false,
+    fetched: false
 }
 
 const send_order_success = (state, action) => {
@@ -48,13 +49,15 @@ const get_order_success = (state, action) => {
     
     return{
         ...state,
-        orders: state.orders.concat(orderList)
+        orders: state.orders.concat(orderList),
+        fetched: true
     }
 }
 const get_order_failed = (state, action) => {
     return{
         ...state,
-        error: true
+        error: true,
+        fetched: false
         }
 }
 const deleteOrder = (state, action) => {

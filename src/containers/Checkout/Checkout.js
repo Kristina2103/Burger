@@ -22,7 +22,8 @@ class Checkout extends React.Component{
     }
    
    render(){
-       let summary = <Redirect to="/"/>
+       console.log(this.props.ingredients)
+       let summary = null
     
         if(this.props.ingredients){
             summary= <div className={classes.Checkout}>
@@ -36,7 +37,9 @@ class Checkout extends React.Component{
         }
         if(this.props.purchased) summary = <Redirect to="/orders"/>
     return (
-        <div>{summary}</div>
+        <div>
+        {summary}
+        </div>
     )
    }
 }

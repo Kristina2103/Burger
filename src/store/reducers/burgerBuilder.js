@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes'
 const InitialState = {
     ingredients : null,
     error: false,
-    purchasable : false
+    purchasable : false,
+    building: false
 }
 
 const add_ingredient = (state, action) => {
@@ -12,7 +13,8 @@ const add_ingredient = (state, action) => {
         ingredients: state.ingredients.map((content, i) => i === action.payload 
             ? {...content, qty: state.ingredients[action.payload].qty + 1 }
             : content
-        )
+        ),
+        building: true
     }
 }
 const remove_ingredient = (state, action) => {
@@ -21,7 +23,8 @@ const remove_ingredient = (state, action) => {
         ingredients: state.ingredients.map((content, i) => i === action.payload
             ? {...content, qty: state.ingredients[action.payload].qty - 1 }
             : content
-        )
+        ),
+        building: true
         
     }
 }
@@ -41,7 +44,8 @@ const set_ingredients = (state, action) => {
     return{
         ...state,
         ingredients: action.payload,
-        error: false
+        error: false,
+        building: false
     }
 }
 //Reducer

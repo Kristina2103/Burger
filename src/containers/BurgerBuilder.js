@@ -19,8 +19,9 @@ class BurgerBuilder extends Component{
     componentDidMount(){
         this.props.onInitIngredients()
     }
-    
+   
     purchaseHandler = () => {
+        if(!this.props.isAuth) return this.props.history.push('/auth')
         this.setState({purchasing:true})
     }
     purchaseCancelHandler = () => {
@@ -39,12 +40,13 @@ class BurgerBuilder extends Component{
     render(){
         let orderSummary 
         let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />
-
+        console.log('Burger: ', this.props.building)
         if(this.props.ingredients){
             burger = (
                <Auxiliary>
                 <Burger />
                 <BuildControls 
+                    isAuth={this.props.isAuth}
                     purchase={this.purchaseHandler}
                     purchasable={this.updatePurchasable}
                     />
@@ -71,6 +73,8 @@ const mapStateToProps = state => {
    return {
     ingredients : state.burgerBuilder.ingredients,
     error: state.burgerBuilder.error,
+    isAuth: state.auth.token !== null,
+    building: state.burgerBuilder.building
    }
 }
 const mapDispatchToProps = dispatch => {

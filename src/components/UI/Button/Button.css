@@ -11,10 +11,10 @@
     text-transform: uppercase;
 }
 
-.Button:first-of-type {
+/* .Button:first-of-type {
     margin-left: 0;
     padding-left: 0;
-}
+} */
 .Button:disabled{
     color: #ccc;
     cursor: not-allowed;
@@ -26,6 +26,13 @@
 
 .Danger {
     color: #944317;
+}
+.Logout {
+    color: #79ae4a;
+    margin: 5px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fff;
 }
 .Delete{
     color: #944317;

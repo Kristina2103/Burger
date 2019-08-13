@@ -145,9 +145,10 @@ class Contact extends Component{
           }
          const data = {
              OrderDetails : this.props.ingredients,
-             customerDetails: details
+             customerDetails: details,
+             userId: this.props.userId
          }
-         return this.props.sendOrder(data)
+         return this.props.sendOrder(data, this.props.token )
     }
     onInputChange = (e, elementId) => { 
         const updatedCustomerDetails = {
@@ -165,7 +166,6 @@ class Contact extends Component{
          for(let inputElement in updatedCustomerDetails){
              isFormValid = updatedCustomerDetails[inputElement].isValid && isFormValid
          }
-         console.log(updatedCustomerDetails)
         this.setState({ 
             customerDetails : updatedCustomerDetails,
             isFormValid : isFormValid
@@ -173,7 +173,6 @@ class Contact extends Component{
     }
     
     render(){
-        console.log(this.state)
         const customerDetailsArray = []
         for (let key in this.state.customerDetails){
             customerDetailsArray.push({
@@ -223,12 +222,14 @@ const mapStateToProps = state => {
     return{
         ingredients : state.burgerBuilder.ingredients,
         orderDetails : state.order.orderDetails,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendOrder : orderDetails => dispatch(actions.sendOrder(orderDetails))
+        sendOrder : (orderDetails, token) => dispatch(actions.sendOrder(orderDetails, token))
     }
 }
 
