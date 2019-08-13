@@ -22,7 +22,6 @@ class Checkout extends React.Component{
     }
    
    render(){
-       console.log(this.props.ingredients)
        let summary = null
     
         if(this.props.ingredients){

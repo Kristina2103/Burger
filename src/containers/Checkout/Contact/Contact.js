@@ -8,6 +8,7 @@ import axiosInstance from '../../../axios'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import {checkInputValidity} from '../../../shared/utility'
 
 class Contact extends Component{
     state = {
@@ -121,19 +122,7 @@ class Contact extends Component{
         isFormValid: false,
         loading:false,
     }
-    checkInputValidity(value, rule){
-        let isValid = true
-        if(rule.required){
-            isValid = value.trim() !== "" && isValid
-        }
-        if(rule.minLength){
-            isValid = value.length >= rule.minLength && isValid
-        }
-        if(rule.maxLength){
-            isValid = value.length <= rule.maxLength && isValid
-        }
-        return isValid
-    }
+    
 
     orderHandler = (e) => {
         e.preventDefault()
@@ -160,7 +149,7 @@ class Contact extends Component{
         formElement.value = e.target.value
         updatedCustomerDetails[elementId] = formElement
         updatedCustomerDetails[elementId].touched = true
-        updatedCustomerDetails[elementId].isValid = this.checkInputValidity(updatedCustomerDetails[elementId].value,updatedCustomerDetails[elementId].validation)
+        updatedCustomerDetails[elementId].isValid = checkInputValidity(updatedCustomerDetails[elementId].value,updatedCustomerDetails[elementId].validation)
         
         let isFormValid = true
          for(let inputElement in updatedCustomerDetails){

@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
+import {updateObject} from '../../shared/utility'
 
 const InitialState = {
     ingredients : null,
@@ -8,45 +9,35 @@ const InitialState = {
 }
 
 const add_ingredient = (state, action) => {
-    return {
-        ...state,
+    return updateObject(state, {
         ingredients: state.ingredients.map((content, i) => i === action.payload 
             ? {...content, qty: state.ingredients[action.payload].qty + 1 }
-            : content
-        ),
-        building: true
-    }
+            : content,
+            ),
+        building: true  
+    })
 }
 const remove_ingredient = (state, action) => {
-    return {
-        ...state,
-        ingredients: state.ingredients.map((content, i) => i === action.payload
+    return updateObject(state, {
+        ingredients: state.ingredients.map((content, i) => i === action.payload 
             ? {...content, qty: state.ingredients[action.payload].qty - 1 }
-            : content
-        ),
-        building: true
-        
-    }
+            : content,
+            ),
+        building: true  
+    })
 }
 const fetch_ingredients_failed = (state, action) => {
-    return{
-        ...state,
-        error: true
-    }
+    return updateObject(state, { error: true })
 }
 const update_purchasable = (state, action) => {
-    return{
-        ...state,
-        purchasable: action.payload
-    }
+    return updateObject(state, { purchasable: action.payload})
 }
 const set_ingredients = (state, action) => {
-    return{
-        ...state,
+    return updateObject(state, { 
         ingredients: action.payload,
         error: false,
         building: false
-    }
+    })
 }
 //Reducer
 const burgerBuilder = (state=InitialState, action) => {

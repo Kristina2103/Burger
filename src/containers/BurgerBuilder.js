@@ -40,7 +40,6 @@ class BurgerBuilder extends Component{
     render(){
         let orderSummary 
         let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />
-        console.log('Burger: ', this.props.building)
         if(this.props.ingredients){
             burger = (
                <Auxiliary>

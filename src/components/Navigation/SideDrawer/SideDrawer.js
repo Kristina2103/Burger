@@ -11,11 +11,11 @@ const SideDrawer = props => (
         <Backdrop 
             opened={props.opened} 
             close={props.close}/>
-        <div className={[classes.SideDrawer, props.opened ? classes.Open : classes.Close].join(" ")}>
+        <div className={[classes.SideDrawer, props.opened ? classes.Open : classes.Close].join(" ")} >
             <div className={classes.Logo}>
             <Logo />
             </div>
-            <nav>
+            <nav onClick={props.close}>
                 <NavigationItems isAuth={props.isAuth} />
             </nav>
         </div>

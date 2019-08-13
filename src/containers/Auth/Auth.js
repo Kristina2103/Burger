@@ -5,7 +5,8 @@ import * as actions from '../../store/actions/index'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
 import Spinner from '../../components/UI/Spinner/Spinner'
-import  classes from './Auth.css';
+import  classes from './Auth.css'
+import {checkInputValidity} from '../../shared/utility'
 
 class Auth extends Component{
     state = {
@@ -42,27 +43,13 @@ class Auth extends Component{
         isFormValid: false ,
         isSignUp: true
     }
-    checkInputValidity(value, rule){
-        let isValid = true
-        if(rule.required){
-            isValid = value.trim() !== "" && isValid
-        }
-        if(rule.minLength){
-            isValid = value.length >= rule.minLength && isValid
-        }
-        if(rule.isEmail){
-            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            isValid = re.test(String(value).toLowerCase());
-        }
-        return isValid
-    }
     onInputChange = (e, inputName) => {
         const updatedUser = {
             ...this.state.user,
             [inputName]: {
                 ...this.state.user[inputName],
                 value: e.target.value,
-                isValid: this.checkInputValidity(e.target.value, this.state.user[inputName].validation),
+                isValid: checkInputValidity(e.target.value, this.state.user[inputName].validation),
                 touched: true
             }
         }

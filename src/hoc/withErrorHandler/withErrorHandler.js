@@ -25,7 +25,6 @@ const withErrorHandler = (WrappedComponent, axiosInstance) =>  {
                 this.setState({errorExists: false})
             }
             render(){
-                // console.log(selectData)
                 return (
                     <Auxiliary>
                         <Modal 
